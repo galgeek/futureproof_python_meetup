@@ -1,8 +1,19 @@
-class Pet:
-    def __init__(self, name=None, sound=None):
-        super().__init__()
-        self.name = name
-        self.sound = sound
+# -*- coding: utf-8 -*-
+
+from __future__ import division, unicode_literals
+
+
+class Pet(object):
+    def __init__(self, name, sound):
+        super(Pet, self).__init__()
+        try:
+            self.name = name.encode('utf-8').decode('utf-8')
+        except AttributeError:
+            self.name = name
+        try:
+            self.sound = sound.encode('utf-8').decode('utf-8')
+        except AttributeError:
+            self.sound = sound
 
     def speak(self):
         return '{}!'.format(self.sound.upper())
@@ -10,12 +21,17 @@ class Pet:
     def come_here(self):
         return 'Here, {}, here!'.format(self.name)
 
+    def __str__(self):
+        return self.__unicode__()
+
+    def __unicode__(self):
+        return self.name
+
 
 class Dog(Pet):
-    def __init__(self, name=None, sound=None, age=None):
-        super().__init__(name, sound)
+    def __init__(self, name, sound, age=None):
+        super(Dog, self).__init__(name, sound)
         self.age = age
-        self.sound = sound or 'woof'
 
     @property
     def dog_years(self):

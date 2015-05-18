@@ -1,16 +1,34 @@
+# -*- coding: utf-8 -*-
+
+from __future__ import unicode_literals, print_function
+
 from pets import Dog
+
+english = Dog(name='Rover', sound='bark', age=3)
+chinese = Dog(name='穗', sound='汪汪', age=10)
 
 
 def test_dog():
-    rover = Dog(name='Rover', sound='bark', age=3)
-    assert rover.name == 'Rover'
+    assert english.name == 'Rover'
+    assert chinese.sound == '汪汪'
 
 
 def test_dog_call():
-    kalb = Dog(name='كلب', sound='هو, هو', age=10)
-    assert kalb.come_here() == 'Here, كلب, here!'
+    assert chinese.come_here() == 'Here, 穗, here!'
 
 
 def test_dog_age():
-    spike = Dog(name='Spike', age=14)
-    assert spike.dog_years == 2
+    assert chinese.dog_years >= 1.42
+
+
+def test_dog_string():
+    try:
+        assert unicode(chinese) == chinese.name
+    except NameError:
+        assert str(chinese) == chinese.name
+
+
+def test_print_name(capsys):
+    print('Name', chinese.name)
+    out, err = capsys.readouterr()
+    assert out == 'Name {}\n'.format(chinese.name)
