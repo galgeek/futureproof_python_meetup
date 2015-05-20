@@ -17,6 +17,7 @@
 * Set global/local order
   `pyenv global 3.4.1 2.7.9`
   `pyenv local 3.4.1 2.7.9`
+* Whatever you set here will be your "default" Python
 
 ## What's tox?
 
@@ -45,10 +46,11 @@
 
 ## Other useful things
 
+* Iterators (use `list`)
+* Exceptions (use `as`)
 * bytes vs strings
 * six
 * futurize
 * modernize
 * python2 -3
-* python3 -Q
-* pylint --py3k
+* python3 -b
