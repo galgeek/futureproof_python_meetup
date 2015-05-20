@@ -30,6 +30,7 @@ class Pet(object):
 
 class Dog(Pet):
     def __init__(self, name, sound, age=None):
+        sound = sound or 'woof'
         super(Dog, self).__init__(name, sound)
         self.age = age
 
